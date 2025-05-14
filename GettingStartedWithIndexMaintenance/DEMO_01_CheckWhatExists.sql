@@ -1,4 +1,6 @@
---What Index Maintenance already exists?
+--What Index Maintenance already exists? -- check whole server
+USE DBA;
+GO
 
 --check sql agent jobs relating to "index" in job name
 SELECT name AS JobName, 
@@ -19,6 +21,6 @@ WHERE sjs.command LIKE '%IndexOptimize%';
 
 --check for Ola Hallengren procs (check master or "dba" or similar database)
 SELECT name
-FROM master.sys.procedures
+FROM sys.procedures
 WHERE name IN ('IndexOptimize', 'CommandExecute');
 

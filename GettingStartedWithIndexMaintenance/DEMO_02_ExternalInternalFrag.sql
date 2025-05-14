@@ -1,6 +1,14 @@
 /****** DEMO 2 ******/
 
---find external fragmentation 
+USE WideWorldImporters;
+GO
+
+
+/*
+
+Find external fragmentation
+
+*/
 
 SELECT S.name as 'Schema',
        T.name as 'Table',
@@ -14,11 +22,19 @@ INNER JOIN sys.indexes I ON I.object_id = DDIPS.object_id
 AND DDIPS.index_id = I.index_id
 WHERE DDIPS.database_id = DB_ID()
 AND I.name IS NOT NULL
---AND DDIPS.avg_fragmentation_in_percent > 0
+--AND DDIPS.avg_fragmentation_in_percent > 0 (if running this before and after - do this twice in the script before/after)
 ORDER BY DDIPS.avg_fragmentation_in_percent DESC;
 
---check page fullness/density
---(NOTE - you need to change last parameter to DETAILED to show page density)
+
+/*
+
+Check page fullness/density
+
+NOTE - you need to change last parameter to DETAILED to show page density
+
+*/
+
+
 SELECT S.name as 'Schema',
        T.name as 'Table',
        I.name as 'Index',
@@ -33,9 +49,16 @@ WHERE DDIPS.database_id = DB_ID()
 AND I.name IS NOT NULL
 ORDER BY DDIPS.avg_page_space_used_in_percent DESC;
 
---OR THIS:
 
---density and fragmentation (external and internal)
+
+
+
+
+/*
+
+Density and fragmentation (external and internal)
+
+*/
 SELECT OBJECT_SCHEMA_NAME(ips.object_id) AS schema_name,  
        OBJECT_NAME(ips.object_id) AS object_name,
        i.name AS index_name,  
