@@ -1,15 +1,20 @@
+/* 
 
-/* Parameters deployed by default  - assumes the following for fragmentation of objects:
+Parameters deployed by default  - assumes the following for fragmentation of objects:
 
-If <5% nothing is changed
-If 5%-30% a REORGANIZE is done
-If 30%+ a REBUILD is done
+*/
+
+
+/*
+
+Index Optimize Proc deploys as 'N' by default, Job creates with 'Y' as default
 
 */
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
-@LogToTable = 'Y'; --> need to specify Y or N but default for the job specifies Y
+@LogToTable = 'N'; 
+
 
 /**** OPTIONS FOR PARAMETERS - EXAMPLES ****/
 
@@ -24,13 +29,11 @@ EXECUTE [dbo].[IndexOptimize]
 @LogToTable = 'Y';
 
 
-
 /*** Only do specific databases ***/
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'WorldWideImporters, Northwind',
 @LogToTable = 'Y';
-
 
 
 /*** Do all but a specific database ***/
@@ -40,24 +43,31 @@ EXECUTE [dbo].[IndexOptimize]
 @LogToTable = 'Y';
 
 
-
 /*** Do all but a specific table ***/
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
-@Indexes = 'ALL_INDEXES, -WideWorldImporters.Sales.Invoices'
+@Indexes = 'ALL_INDEXES, -WideWorldImporters.Sales.Invoices',
 @LogToTable = 'Y';
-
 
 
 /*** Do all but a specific index ***/
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
-@Indexes = 'ALL_INDEXES, -WideWorldImporters.Sales.Invoices.IndexName' --> amend this
+@Indexes = 'ALL_INDEXES, -WideWorldImporters.Sales.Invoices.PK_Sales_Invoices',
 @LogToTable = 'Y';
 
 
+/*
+
+@Fragmentation levels - Parameters deployed by default
+
+@FragmentationLow		If <5% nothing is changed 
+@FragmentationMedium	If 5%-30% a REORGANIZE is done 
+@FragmentationHigh		If 30%+ a REBUILD is done
+
+*/
 
 /*** Rebuild offline (Web/Standard Edition) ***/
 
@@ -67,7 +77,6 @@ EXECUTE [dbo].[IndexOptimize]
 @FragmentationMedium = NULL, 
 @FragmentationHigh = 'INDEX_REBUILD_OFFLINE', --the default is 30 (determines lower limit for high fragmentation)
 @LogToTable = 'Y'
-
 
 
 /*** Rebuild online (Developer/Enterprise Edition) - only rebuild when fragmentation is high i.e. avg_fragmentation_in_percent >= 50 ***/
