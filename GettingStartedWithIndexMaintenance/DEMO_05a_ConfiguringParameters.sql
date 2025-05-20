@@ -9,7 +9,7 @@ If 30%+ a REBUILD is done
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
-@LogToTable = 'N';
+@LogToTable = 'Y'; --> need to specify Y or N but default for the job specifies Y
 
 /**** OPTIONS FOR PARAMETERS - EXAMPLES ****/
 
@@ -54,7 +54,7 @@ EXECUTE [dbo].[IndexOptimize]
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
-@Indexes = 'ALL_INDEXES, -WideWorldImporters.Sales.Invoices'
+@Indexes = 'ALL_INDEXES, -WideWorldImporters.Sales.Invoices.IndexName' --> amend this
 @LogToTable = 'Y';
 
 
