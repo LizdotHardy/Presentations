@@ -10,7 +10,9 @@ EXEC sp_add_jobstep
     @job_name = N'Update Statistics - USER_DATABASES',
     @step_name = N'Run Index Maintenance',
     @subsystem = N'TSQL',
-    @command = N'EXEC dbo.IndexOptimize 
+    @command = N'USE DBA;
+                GO            
+                EXEC dbo.IndexOptimize 
                 @Databases = ''USER_DATABASES'',
                 @FragmentationLow = NULL,
                 @FragmentationMedium = NULL,
