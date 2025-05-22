@@ -11,7 +11,7 @@ GO
 
   SELECT * 
   FROM [DBA].[dbo].[CommandLog]
-   WHERE StartTime > '2025-05-09 23:59:59'
+   WHERE StartTime > '2025-05-22 23:59:59'
     AND CommandType = 'ALTER_INDEX'
   ORDER BY databasename, StartTime
 
@@ -19,7 +19,7 @@ GO
 
   SELECT * 
   FROM [DBA].[dbo].[CommandLog]
-   WHERE StartTime > '2025-05-09 23:59:59'
+   WHERE StartTime > '2025-05-22 23:59:59'
     AND CommandType = 'ALTER_INDEX'
     AND Command LIKE 'ALTER INDEX%REORGANIZE%'
   ORDER BY databasename, StartTime
