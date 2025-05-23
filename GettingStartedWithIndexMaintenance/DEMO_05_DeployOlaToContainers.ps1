@@ -1,4 +1,7 @@
+docker start containername
+docker stop containername
 
+test-dbaconnection -SqlInstance localhost:7778,localhost:7779
 
 #use this line for docker instance: 
 
@@ -12,7 +15,7 @@ $inst = connect-DbaInstance -SqlInstance localhost:7777 -SqlCredential (Get-Cred
 
 
 #To Deploy:
-
+ 
 $params = @{
     SqlInstance = $inst
     Database = 'DBA'

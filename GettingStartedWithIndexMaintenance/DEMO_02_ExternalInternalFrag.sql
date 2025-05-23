@@ -22,14 +22,14 @@ INNER JOIN sys.indexes I ON I.object_id = DDIPS.object_id
 AND DDIPS.index_id = I.index_id
 WHERE DDIPS.database_id = DB_ID()
 AND I.name IS NOT NULL
-AND DDIPS.page_count > 1000
+--AND DDIPS.page_count > 1000
 AND DDIPS.avg_fragmentation_in_percent > 0 --(if running this before and after - do this twice in the script before/after)
 ORDER BY DDIPS.avg_fragmentation_in_percent DESC;
 
 
 /*
 
-Check page fullness/density
+Find Internal fragmentation - Check page fullness/density
 
 NOTE - you need to change last parameter to DETAILED to show page density
 
