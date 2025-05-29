@@ -87,7 +87,6 @@ EXECUTE [dbo].[IndexOptimize]
 @FragmentationMedium = NULL, 
 @FragmentationHigh = 'INDEX_REBUILD_ONLINE',
 @FragmentationLevel2 = 50, --otherwise the default is 30 (determines lower limit for high fragmentation)
-@Timelimit = 7200, --only allow for 2 hours
 @LogToTable = 'Y'
 
 

@@ -1,24 +1,41 @@
-docker start containername
-docker stop containername
+#use this line for connecting to 1 docker instance: 
+
+#$inst = connect-DbaInstance -SqlInstance localhost:7777 -SqlCredential (Get-Credential sqladmin) 
+
+
+
+#stop container 1
+
+docker stop lizsql1
+
+
+
+
+#start containers
+
+docker start lizsql2, lizsql3
 
 test-dbaconnection -SqlInstance localhost:7778,localhost:7779
 
-#use this line for docker instance: 
 
-$inst = connect-DbaInstance -SqlInstance localhost:7777 -SqlCredential (Get-Credential sqladmin) 
+
+
 
 
 
 #use to deploy to multiple containers at once:
 
-#$inst = connect-DbaInstance -SqlInstance localhost:7778,localhost:7779 -SqlCredential (Get-Credential sqladmin) 
+$inst = connect-DbaInstance -SqlInstance localhost:7778,localhost:7779 -SqlCredential (Get-Credential sqladmin) 
+
+
+
 
 
 #To Deploy:
  
 $params = @{
     SqlInstance = $inst
-    Database = 'DBA'
+    Database = 'master'
     InstallJobs = $true
     #ReplaceExisting = $true # Replace any existing jobs
 }
@@ -28,4 +45,17 @@ $params = @{
 
 Install-DbaMaintenanceSolution @params 
 
+
+
+
+
+
+
+
+
+#stop containers/start container 1 again
+
+docker stop lizsql2, lizsql3
+
+docker start lizsql1
 

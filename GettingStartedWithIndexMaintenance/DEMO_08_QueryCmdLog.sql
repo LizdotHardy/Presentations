@@ -37,6 +37,6 @@ GO
 
   SELECT * 
   FROM [DBA].[dbo].[CommandLog]
-   WHERE StartTime > '2025-05-09 23:59:59'
+   WHERE StartTime > GETDATE()-1
     AND CommandTYPE LIKE '%UPDATE%STATISTICS%'
   ORDER BY databasename, StartTime
