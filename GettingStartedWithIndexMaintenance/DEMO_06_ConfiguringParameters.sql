@@ -69,17 +69,17 @@ EXECUTE [dbo].[IndexOptimize]
 
 */
 
-/*** Rebuild offline (Web/Standard Edition) ***/
+/*** All editions - rebuild online if you can otherwise do offline if not ***/
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
 @FragmentationLow = NULL,
 @FragmentationMedium = NULL, 
-@FragmentationHigh = 'INDEX_REBUILD_OFFLINE', --the default is 30 (determines lower limit for high fragmentation)
+@FragmentationHigh = 'INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE' --the default is 30 (determines lower limit for high fragmentation)
 @LogToTable = 'Y'
 
 
-/*** Rebuild online (Developer/Enterprise Edition) - only rebuild when fragmentation is high i.e. avg_fragmentation_in_percent >= 50 ***/
+/*** rebuild when fragmentation is higher than 50% i.e. avg_fragmentation_in_percent >= 50 ***/
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
@@ -103,5 +103,22 @@ EXECUTE [dbo].[IndexOptimize]
 @FragmentationMedium = NULL, 
 @FragmentationHigh = 'INDEX_REBUILD_ONLINE',
 @FragmentationLevel2 = 50, --otherwise the default is 30 (determines lower limit for high fragmentation)
-@Timelimit = 7200, --only allow for 2 hours
+@Timelimit = 7200, --configure in seconds - 2 hours
 @LogToTable = 'Y'
+
+
+/*
+
+- Update Statistcs
+
+*/
+
+EXEC dbo.IndexOptimize 
+@Databases = 'USER_DATABASES',
+@FragmentationLow = NULL,
+@FragmentationMedium = NULL,
+@FragmentationHigh = NULL,
+@UpdateStatistics = 'ALL',
+@StatisticsModificationLevel = 5, 
+@TimeLimit = 1800,
+@LogToTable = 'Y';

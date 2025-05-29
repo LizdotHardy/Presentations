@@ -8,6 +8,9 @@ GO
 
 Find external fragmentation
 
+
+Ola solution uses this to guage fragmentation level
+
 */
 
 SELECT S.name as 'Schema',
@@ -32,6 +35,8 @@ ORDER BY DDIPS.avg_fragmentation_in_percent DESC;
 Find Internal fragmentation - Check page fullness/density
 
 NOTE - you need to change last parameter to DETAILED to show page density
+
+Ola Solution cannot be configured to use this
 
 */
 

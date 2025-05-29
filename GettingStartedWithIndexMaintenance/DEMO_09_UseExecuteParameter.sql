@@ -11,6 +11,8 @@ N		Only print commands.
 
 */
 
+/** great for fine tuning **/
+
 USE DBA;
 GO
 

@@ -5,7 +5,7 @@ GO
 EXEC sp_add_job 
     @job_name = N'Update Statistics - USER_DATABASES';
 
--- Add a step to the job
+-- Add a step to the job --(5% of rows in table/index modified then will update stats) --check 1800 limit
 EXEC sp_add_jobstep 
     @job_name = N'Update Statistics - USER_DATABASES',
     @step_name = N'Run Index Maintenance',
@@ -35,7 +35,7 @@ GO
 
 EXEC sp_add_jobschedule 
     @job_name = N'Update Statistics - USER_DATABASES',
-    @name = N'Weekly Index Maintenance - Daily 10pm',
+    @name = N'Daily Index Maintenance - Daily 10pm',
     @freq_type = 4,       
     @freq_interval = 1, 
     @freq_recurrence_factor = 1,  

@@ -21,7 +21,7 @@ https://ola.hallengren.com
 
 */
 
-USE [DBA] -- Specify the database in which the objects will be created.
+USE [InputDBName] -- Specify the database in which the objects will be created.
 
 SET NOCOUNT ON
 
