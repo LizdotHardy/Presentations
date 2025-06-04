@@ -78,6 +78,15 @@ EXECUTE [dbo].[IndexOptimize]
 @FragmentationHigh = 'INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE' --the default is 30 (determines lower limit for high fragmentation)
 @LogToTable = 'Y'
 
+/*** All editions - rebuild online if you can otherwise do offline if not ***/
+
+EXECUTE [dbo].[IndexOptimize]
+@Databases = 'USER_DATABASES',
+@FragmentationLow = NULL,
+@FragmentationMedium = 'INDEX_REORGANIZE,INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE', 
+@FragmentationHigh = 'INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE' --the default is 30 (determines lower limit for high fragmentation)
+@LogToTable = 'Y'
+
 
 /*** rebuild when fragmentation is higher than 50% i.e. avg_fragmentation_in_percent >= 50 ***/
 
@@ -86,7 +95,7 @@ EXECUTE [dbo].[IndexOptimize]
 @FragmentationLow = NULL,
 @FragmentationMedium = NULL, 
 @FragmentationHigh = 'INDEX_REBUILD_ONLINE',
-@FragmentationLevel2 = 50, --otherwise the default is 30 (determines lower limit for high fragmentation)
+@FragmentationLevel2 = 50, --otherwise uses the default of 30 (determines lower limit for high fragmentation)
 @LogToTable = 'Y'
 
 
@@ -118,7 +127,7 @@ EXEC dbo.IndexOptimize
 @FragmentationLow = NULL,
 @FragmentationMedium = NULL,
 @FragmentationHigh = NULL,
-@UpdateStatistics = 'ALL',
-@StatisticsModificationLevel = 5, 
+@UpdateStatistics = 'ALL', --Update index and column statistics
+@StatisticsModificationLevel = 5, --a percentage of modified rows for when the statistics should be updated
 @TimeLimit = 1800,
 @LogToTable = 'Y';
