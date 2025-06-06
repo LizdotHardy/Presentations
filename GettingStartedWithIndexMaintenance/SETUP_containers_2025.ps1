@@ -1,4 +1,4 @@
-﻿#Use this to restart docker
+#Use this to restart docker
 
 #docker desktop restart
 
