@@ -1,16 +1,16 @@
-﻿#CONTAINER CHECKS
-
+#CONTAINER CHECKS
 #$inst = connect-DbaInstance -SqlInstance localhost:7777 -SqlCredential (Get-Credential sqladmin) 
 
 
-# list all containers
-docker ps -a
+#Start first container
+docker start lizsql1
+
+$cred = get-credential sqladmin 
+test-dbaconnection -SqlInstance localhost:7777 -SqlCredential $cred -SkipPSRemoting
 
 #list all active containers
 docker ps
 
-#list all stopped containers
-docker ps -a --filter "status=exited"
 
 
 
