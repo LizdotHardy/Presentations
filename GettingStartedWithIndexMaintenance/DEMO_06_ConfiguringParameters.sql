@@ -59,26 +59,26 @@ EXECUTE [dbo].[IndexOptimize]
 @LogToTable = 'Y';
 
 
-/*
+/***************************************************************************
 
 @Fragmentation levels - Parameters deployed by default
 
-@FragmentationLow		If <5% nothing is changed 
-@FragmentationMedium	If 5%-30% a REORGANIZE is done 
-@FragmentationHigh		If 30%+ a REBUILD is done
+@FragmentationLow		If fragmentation is <5% nothing is done
+@FragmentationMedium	If fragmentation is 5%-30% a REORGANIZE is done 
+@FragmentationHigh		If fragmentation is 30%+ a REBUILD is done
 
-*/
+***************************************************************************/
 
-/*** All editions - rebuild online if you can otherwise do offline if not ***/
+/*** rebuild online is attempted otherwise will do offline ***/
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
 @FragmentationLow = NULL,
 @FragmentationMedium = NULL, 
-@FragmentationHigh = 'INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE' --the default is 30 (determines lower limit for high fragmentation)
+@FragmentationHigh = 'INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE', /* the default is 30 (determines lower limit for high fragmentation) */
 @LogToTable = 'Y'
 
-/*** All editions - rebuild online if you can otherwise do offline if not ***/
+/*** tries a reorg then if not a rebuild online is attempted otherwise will do offline ***/
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
@@ -95,32 +95,36 @@ EXECUTE [dbo].[IndexOptimize]
 @FragmentationLow = NULL,
 @FragmentationMedium = NULL, 
 @FragmentationHigh = 'INDEX_REBUILD_ONLINE',
-@FragmentationLevel2 = 50, --otherwise uses the default of 30 (determines lower limit for high fragmentation)
+@FragmentationLevel2 = 50, /* otherwise uses the default of 30 (determines lower limit for high fragmentation) */
 @LogToTable = 'Y'
 
 
-/* Using the Timelimit Parameter
+/*************************************************************************** 
+
+Using the Timelimit Parameter
 
 NOTE - won't stop the current object - will not start next command 
 once this timelimit is reached
 
-*/
+***************************************************************************/
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'USER_DATABASES',
 @FragmentationLow = NULL,
 @FragmentationMedium = NULL, 
 @FragmentationHigh = 'INDEX_REBUILD_ONLINE',
-@FragmentationLevel2 = 50, --otherwise the default is 30 (determines lower limit for high fragmentation)
-@Timelimit = 7200, --configure in seconds - 2 hours
+@FragmentationLevel2 = 50, /* otherwise the default is 30 (determines lower limit for high fragmentation) */
+@Timelimit = 7200, /* configure in seconds - 2 hours */
 @LogToTable = 'Y'
 
 
-/*
 
-- Update Statistcs
 
-*/
+
+
+/***************************************************************************
+					Update Statistics
+***************************************************************************/
 
 EXEC dbo.IndexOptimize 
 @Databases = 'USER_DATABASES',
@@ -129,5 +133,18 @@ EXEC dbo.IndexOptimize
 @FragmentationHigh = NULL,
 @UpdateStatistics = 'ALL', --Update index and column statistics
 @StatisticsModificationLevel = 5, --a percentage of modified rows for when the statistics should be updated
+@TimeLimit = 1800,
+@LogToTable = 'Y';
+
+
+--Add another demo for stats - onlymodifiedstats
+
+EXEC dbo.IndexOptimize 
+@Databases = 'USER_DATABASES',
+@FragmentationLow = NULL,
+@FragmentationMedium = NULL,
+@FragmentationHigh = NULL,
+@UpdateStatistics = 'ALL', --Update index and column statistics
+@OnlyModifiedStats = 'Y', 
 @TimeLimit = 1800,
 @LogToTable = 'Y';

@@ -4,7 +4,7 @@ GO
 
 /*
 
---check sql agent jobs relating to "index" in job name
+--check sql agent jobs relating to "index" in job name - step command
 
 */
 

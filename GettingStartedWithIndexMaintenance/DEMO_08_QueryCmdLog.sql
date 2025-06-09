@@ -11,27 +11,27 @@ GO
 
   SELECT * 
   FROM [DBA].[dbo].[CommandLog]
-   WHERE StartTime > '2025-05-22 23:59:59'
+   WHERE StartTime > '2025-06-01'
     AND CommandType = 'ALTER_INDEX'
-  ORDER BY databasename, StartTime
+  ORDER BY Databasename, StartTime
 
   --see what was updated - check for REORG only
 
   SELECT * 
   FROM [DBA].[dbo].[CommandLog]
-   WHERE StartTime > '2025-05-22 23:59:59'
+   WHERE StartTime > '2025-06-01'
     AND CommandType = 'ALTER_INDEX'
     AND Command LIKE 'ALTER INDEX%REORGANIZE%'
-  ORDER BY databasename, StartTime
+  ORDER BY Databasename, StartTime
 
 --see what was updated - check for REBUILD only
 
   SELECT * 
   FROM [DBA].[dbo].[CommandLog]
-   WHERE StartTime > '2025-05-09 23:59:59'
+   WHERE StartTime > '2025-06-01'
     AND CommandType = 'ALTER_INDEX'
     AND Command LIKE 'ALTER INDEX%REBUILD%'
-  ORDER BY databasename, StartTime
+  ORDER BY Databasename, StartTime
 
 --see when Statistics are updated
 
@@ -39,4 +39,4 @@ GO
   FROM [DBA].[dbo].[CommandLog]
    WHERE StartTime > GETDATE()-1
     AND CommandTYPE LIKE '%UPDATE%STATISTICS%'
-  ORDER BY databasename, StartTime
+  ORDER BY Databasename, StartTime
