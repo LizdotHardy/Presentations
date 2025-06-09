@@ -1,4 +1,14 @@
---container 1 - run all the solution all jobs/procs/commandlog table in one (all will be deployed without a schedule - will need to add those...)
+/***** DEMO 3 *****/
+
+
+/*********************************************************************************************************************************
+
+Deploy Entire Solution
+
+--select db to deploy to - in this case [dba]
+--run all the solution all jobs/procs/commandlog table in one (all will be deployed without a schedule - will need to add those...)
+
+**********************************************************************************************************************************/
 
 /*
 

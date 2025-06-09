@@ -1,4 +1,9 @@
 
+/**************************************************
+
+DEPLOY USING DBATOOLS - automated/multiple instances
+
+**************************************************/
 
 #CONTAINER CHECKS
 #$inst = connect-DbaInstance -SqlInstance localhost:7777 -SqlCredential (Get-Credential sqladmin) 

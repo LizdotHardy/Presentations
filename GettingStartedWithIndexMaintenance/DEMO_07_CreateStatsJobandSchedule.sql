@@ -1,9 +1,21 @@
+/****** DEMO 7 *****/
+
 USE msdb;
 GO
+
+/************************************************************************************************************
+
+Use Ola solution to create an Update Stats job (based off index optimise) - Run the job once have created it
+
+************************************************************************************************************/
+
+
 
 -- Add the job
 EXEC sp_add_job 
     @job_name = N'Update Statistics - USER_DATABASES';
+
+
 
 -- Add a step to the job --(5% of rows in table/index modified then will update stats) --check 1800 limit
 EXEC sp_add_jobstep 
@@ -21,6 +33,8 @@ EXEC sp_add_jobstep
                 @StatisticsModificationLevel = 5, 
                 @TimeLimit = 1800,
                 @LogToTable = ''Y'';';
+
+
 
 -- Add the job to SQL Server Agent
 EXEC sp_add_jobserver 
@@ -43,3 +57,4 @@ EXEC sp_add_jobschedule
     @active_start_time = 220000; 
 GO
 
+--NOTE - run stats job now
