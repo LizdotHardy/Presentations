@@ -1,5 +1,9 @@
+
+
 #CONTAINER CHECKS
 #$inst = connect-DbaInstance -SqlInstance localhost:7777 -SqlCredential (Get-Credential sqladmin) 
+
+#save credential - check Readme for containers.
 
 
 #Start first container
@@ -11,9 +15,12 @@ test-dbaconnection -SqlInstance localhost:7777 -SqlCredential $cred -SkipPSRemot
 #list all active containers
 docker ps
 
+#list all active containers
+docker ps -a
 
 
-
+#Check sql is up and running
+docker logs lizsql1 | Select-String "Recovery is complete"
 
 
 #STOP/START CONTAINERS/TEST CONNECTION
