@@ -22,7 +22,7 @@ SELECT sj.name AS JobName,
        sjs.command
 FROM msdb.dbo.sysjobsteps sjs
 JOIN msdb.dbo.sysjobs sj ON sjs.job_id = sj.job_id
-WHERE sjs.command LIKE '%Index%'
+WHERE sjs.command LIKE '%Index%'    /*** use to search for keywords here ***/
 ORDER BY name;
 
 
@@ -39,7 +39,7 @@ FROM msdb.dbo.sysmaintplan_plans;
 
 
 /**************************************************************************
-check for Ola jobs with name like index optimize
+check for jobs with name like index optimize
 ***************************************************************************/
 
 SELECT sj.name AS JobName, 
@@ -53,7 +53,7 @@ WHERE sj.name LIKE '%IndexOptimize%';
 
 
 /**************************************************************************
-check for Ola Hallengren procs (check master or "dba" or similar database)
+check for procs (check master or "dba" or similar database)
 ***************************************************************************/
 
 SELECT name
