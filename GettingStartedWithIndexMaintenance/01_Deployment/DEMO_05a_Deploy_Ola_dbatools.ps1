@@ -17,7 +17,7 @@
 #docker logs lizsql1 | Select-String "Recovery is complete"
 
 
-#run Ola clean up script
+
 
 #DEPLOY OLA TO INSTANCES:
 

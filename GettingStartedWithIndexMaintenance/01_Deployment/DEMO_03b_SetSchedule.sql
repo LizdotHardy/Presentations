@@ -20,3 +20,8 @@ EXEC sp_add_jobschedule
     @freq_subday_type = 1, -- Once per day
     @active_start_time = 200000;  -- 20:00:00 (8 PM)
 GO
+
+
+
+
+/** run clean up script **/

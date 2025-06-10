@@ -27,6 +27,10 @@ GO
   ORDER BY Databasename, StartTime
 
   
+
+
+
+
  --see what was updated - Look for REORG and REBUILDs (blank for this demo)
 
  SELECT * 
