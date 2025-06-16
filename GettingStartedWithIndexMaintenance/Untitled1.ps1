@@ -42,6 +42,7 @@ docker start lizsql1
 #Start-Service -Name Docker
 
 
+
 # create a shared network
 #docker network create localnet
 
@@ -71,8 +72,16 @@ Get-DbaDatabase -SqlInstance lizsql1, lizsql2, lizsql3
 # list all containers
 docker ps -a
 
-#stop containers
-docker stop lizsql2, lizsql3
+
+
+
+
+
+
+
+
+
+
 
 
 #### DESTROY CONTAINERS###
