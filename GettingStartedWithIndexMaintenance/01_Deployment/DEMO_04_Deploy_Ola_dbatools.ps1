@@ -1,9 +1,5 @@
 
-#/**************************************************
-
-#DEPLOY USING DBATOOLS - automated/multiple instances
-
-#**************************************************/
+##DEBUGGLING##
 
 #CONTAINER CHECKS
 
@@ -19,7 +15,12 @@
 
 
 
-#DEPLOY OLA TO INSTANCES:
+
+#/**************************************************
+
+#DEPLOY USING DBATOOLS - automated/multiple instances
+
+#**************************************************/
 
 
 #Set credential and test connection

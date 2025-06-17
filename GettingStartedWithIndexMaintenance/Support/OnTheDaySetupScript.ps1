@@ -19,6 +19,10 @@ Import-Module DBATools
 
 docker start lizsql1
 
+#NOW RUN OLA CLEAN UP SCRIPT...
+
+
+
 #Stop any if perf issues - 7778/9 not needed immediately
 
 
@@ -68,10 +72,10 @@ $cred = Get-Credential sqladmin
 $PSDefaultParameterValues = @{ '*-dba*:SqlCredential' =  $cred }
 
 # now you can connect like this
-Connect-DbaInstance -SqlInstance lizsql1, lizsql2, lizsql3
+Connect-DbaInstance -SqlInstance lizsql1
 
 # and get databases like this
-Get-DbaDatabase -SqlInstance lizsql1, lizsql2, lizsql3
+Get-DbaDatabase -SqlInstance 'localhost,7777'
 
 # list all containers
 docker ps -a

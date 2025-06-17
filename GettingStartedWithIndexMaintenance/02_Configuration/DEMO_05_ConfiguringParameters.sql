@@ -112,7 +112,7 @@ EXEC dbo.IndexOptimize
 @FragmentationMedium = NULL,
 @FragmentationHigh = NULL,
 @UpdateStatistics = 'ALL', --Update index and column statistics
-@StatisticsModificationLevel = 5, --a percentage of modified rows for when the statistics should be updated
+@StatisticsModificationLevel = 5, --5% of rows in table/index modified then will update those stats
 @TimeLimit = 1800,
 @LogToTable = 'Y';
 
