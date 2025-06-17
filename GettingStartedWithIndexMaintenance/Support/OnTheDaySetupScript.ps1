@@ -23,6 +23,11 @@ docker start lizsql1
 
 
 
+#Start first container
+docker start lizsql1
+
+$cred = get-credential sqladmin 
+test-dbaconnection -SqlInstance localhost:7777 -SqlCredential $cred -SkipPSRemoting
 
 
 
