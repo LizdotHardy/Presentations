@@ -24,7 +24,7 @@
 
 
 #Set credential and test connection
-$cred = get-credential sqladmin 
+#$cred = get-credential sqladmin 
 test-dbaconnection -SqlInstance localhost:7777 -SqlCredential $cred -SkipPSRemoting
 
 
@@ -36,7 +36,7 @@ $inst = connect-DbaInstance -SqlInstance localhost:7777 -SqlCredential $cred
 
 #Use to deploy to multiple containers at once:
 
-#$inst = connect-DbaInstance -SqlInstance localhost:7778,localhost:7779 -SqlCredential $cred 
+$inst = connect-DbaInstance -SqlInstance localhost:7778,localhost:7779 -SqlCredential $cred 
 
 
 

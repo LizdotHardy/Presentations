@@ -1,4 +1,4 @@
-/***** DEMO 09 *****/
+/***** DEMO 08 *****/
 
 
 /*********************************************************************
@@ -22,5 +22,4 @@ GO
 
 EXECUTE [dbo].[IndexOptimize]
 @Databases = 'WideWorldImporters',
-@LogToTable = 'Y',
 @Execute = 'N'

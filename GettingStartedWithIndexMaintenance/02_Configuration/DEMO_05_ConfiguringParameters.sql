@@ -1,4 +1,4 @@
-/***** DEMO 6 *****/
+/***** DEMO 5 *****/
 
 /********************************
 
@@ -83,7 +83,7 @@ EXECUTE [dbo].[IndexOptimize]
 
 /*************************************************************************** 
 
-Reset @FragmenationHigh level to higher than 50% using @FragmentationLevel2 parameter
+Configure @FragmentationHigh level to higher than 50% using @FragmentationLevel2 parameter
 
 Using the Timelimit Parameter
 - won't stop the current object - will not start next command once this timelimit is reached
@@ -150,25 +150,3 @@ EXEC dbo.IndexOptimize
 
 
 
-
-
-/*** rebuild online is attempted otherwise will do offline ***/
-
-EXECUTE [dbo].[IndexOptimize]
-@Databases = 'USER_DATABASES',
-@FragmentationLow = NULL,
-@FragmentationMedium = NULL, 
-@FragmentationHigh = 'INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE', /* the default is 30 (determines lower limit for high fragmentation) */
-@LogToTable = 'Y'
-
-
-
-/*** rebuild when fragmentation is higher than 50% i.e. avg_fragmentation_in_percent >= 50 ***/
-
-EXECUTE [dbo].[IndexOptimize]
-@Databases = 'USER_DATABASES',
-@FragmentationLow = NULL,
-@FragmentationMedium = 'INDEX_REORGANIZE,INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE', 
-@FragmentationHigh = 'INDEX_REBUILD_ONLINE,INDEX_REBUILD_OFFLINE',
-@FragmentationLevel2 = 50, /* -sets threshold to 50 rather than default of 30 for high fragmentation) */
-@LogToTable = 'Y'

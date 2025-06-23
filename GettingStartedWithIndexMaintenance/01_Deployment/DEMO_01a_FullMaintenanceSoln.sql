@@ -1,4 +1,4 @@
-/***** DEMO 3 *****/
+/***** DEMO 1a - DEPLOY *****/
 
 
 /*********************************************************************************************************************************
@@ -31,7 +31,7 @@ https://ola.hallengren.com
 
 */
 
-USE [InputDBName] -- Specify the database in which the objects will be created.
+USE [inputdbname] -- Specify the database in which the objects will be created.
 
 SET NOCOUNT ON
 

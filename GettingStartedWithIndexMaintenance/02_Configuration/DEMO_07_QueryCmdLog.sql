@@ -1,4 +1,4 @@
-/***** DEMO 8 *****/
+/***** DEMO 7 *****/
 
 
 /*********************************************************************************************************
@@ -11,23 +11,21 @@ Using the Command Log - great tool for troubleshooting errors in maintenance and
 USE DBA;
 GO
 
- --check for error messages
-
-  SELECT * 
-  FROM DBA.dbo.CommandLog
-  WHERE ErrorMessage IS NOT NULL
-
 
 --see when Statistics are updated (ensure stats job has run first)
 
   SELECT * 
   FROM [DBA].[dbo].[CommandLog]
    WHERE StartTime > GETDATE()-1
-    AND CommandTYPE LIKE '%UPDATE%STATISTICS%'
+    AND CommandType LIKE '%UPDATE%STATISTICS%'
   ORDER BY Databasename, StartTime
 
   
+ --check for error messages
 
+  SELECT * 
+  FROM DBA.dbo.CommandLog
+  WHERE ErrorMessage IS NOT NULL
 
 
 
